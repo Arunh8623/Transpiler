@@ -1,0 +1,9 @@
+# Rendering engine - only needed to actually render animations.
+# These have compiled (C-extension) dependencies, most notably pycairo,
+# which needs a prebuilt wheel for your Python version or a working
+# C/C++ compiler (Microsoft C++ Build Tools on Windows) to build from
+# source. If installing this file fails, the app will still start and
+# run - Manim/render-related actions will simply show as unavailable
+# in Settings/Dashboard until this is installed successfully.
+manim>=0.18.1
+numpy>=1.26

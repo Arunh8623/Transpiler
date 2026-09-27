@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222 47% 6%;
+  --foreground: 210 40% 96%;
+  --panel: 222 40% 10%;
+  --border: 222 20% 20%;
+  --muted: 215 16% 65%;
+  /* RGB triplets (space-separated) for use with rgb(var(--x) / alpha) */
+  --glow-1: 99 102 241;   /* indigo */
+  --glow-2: 34 211 238;   /* cyan */
+  --glow-opacity: 0.16;
+  --panel-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/*
+  Light mode previously reused near-identical lightness values for both
+  --background and --panel (98% vs 100%), so glass panels had almost no
+  contrast against the page and looked flat/broken. It also inherited the
+  dark-mode glow gradient at the same opacity, which reads as an elegant
+  ambient glow on near-black but as a slightly dirty smear on a light
+  background. Both are corrected below: panel is pure white against a
+  faintly tinted background (real, visible separation + a real shadow),
+  and the glow opacity is turned down substantially.
+*/
+.light {
+  --background: 224 35% 96%;
+  --foreground: 222 47% 11%;
+  --panel: 0 0% 100%;
+  --border: 220 25% 87%;
+  --muted: 215 16% 38%;
+  --glow-1: 99 102 241;
+  --glow-2: 8 145 178;
+  --glow-opacity: 0.07;
+  --panel-shadow: 0 12px 32px -12px rgba(30, 41, 59, 0.14);
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+  background-image: radial-gradient(
+      circle at 20% 20%,
+      rgb(var(--glow-1) / var(--glow-opacity)),
+      transparent 40%
+    ),
+    radial-gradient(circle at 80% 60%, rgb(var(--glow-2) / var(--glow-opacity)), transparent 45%);
+  background-attachment: fixed;
+  transition: background-color 0.2s ease;
+}
+
+.glass-panel {
+  @apply bg-panel/80 backdrop-blur-xl border border-border/60 rounded-2xl;
+  box-shadow: var(--panel-shadow);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.glass-panel:hover {
+  border-color: hsl(var(--border));
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+}

@@ -1,0 +1,13 @@
+# Core requirements - only what the FastAPI server itself needs to boot.
+# The backend never does `import manim` in Python; it only shells out to
+# the `manim` CLI executable, so it does NOT need this file's contents
+# to serve the API, browse projects, or take/store a Gemini key.
+# Keeping this file minimal means one broken compiled dependency (see
+# requirements-render.txt) can never prevent the whole app from starting.
+fastapi>=0.115
+uvicorn[standard]>=0.30
+sqlmodel>=0.0.22
+pydantic>=2.8
+pydantic-settings>=2.4
+python-multipart>=0.0.9
+google-genai>=0.3.0

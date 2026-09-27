@@ -1,0 +1,11 @@
+backend/.venv/
+backend/.env
+backend/data/
+backend/projects/
+frontend/node_modules/
+frontend/dist/
+frontend/src-tauri/target/
+frontend/src-tauri/backend-config.json
+__pycache__/
+*.pyc
+.DS_Store
